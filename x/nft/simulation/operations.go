@@ -14,11 +14,12 @@ import (
 	simtypes "github.com/cosmos/cosmos-sdk/types/simulation"
 	"github.com/cosmos/cosmos-sdk/x/simulation"
 
-	"github.com/crypto-org-chain/chain-main/v3/x/nft/keeper"
-	"github.com/crypto-org-chain/chain-main/v3/x/nft/types"
+	"github.com/crypto-org-chain/chain-main/v4/x/nft/keeper"
+	"github.com/crypto-org-chain/chain-main/v4/x/nft/types"
 )
 
 // Simulation operation weights constants
+// nolint:gosec
 const (
 	OpWeightMsgMintNFT     = "op_weight_msg_mint_nft"
 	OpWeightMsgEditNFT     = "op_weight_msg_edit_nft_tokenData"

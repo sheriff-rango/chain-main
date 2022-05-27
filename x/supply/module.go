@@ -5,16 +5,16 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/crypto-org-chain/chain-main/v3/x/supply/client/cli"
-	"github.com/crypto-org-chain/chain-main/v3/x/supply/client/rest"
-	"github.com/crypto-org-chain/chain-main/v3/x/supply/keeper"
+	"github.com/crypto-org-chain/chain-main/v4/x/supply/client/cli"
+	"github.com/crypto-org-chain/chain-main/v4/x/supply/client/rest"
+	"github.com/crypto-org-chain/chain-main/v4/x/supply/keeper"
 
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/codec"
 	cdctypes "github.com/cosmos/cosmos-sdk/codec/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/module"
-	"github.com/crypto-org-chain/chain-main/v3/x/supply/types"
+	"github.com/crypto-org-chain/chain-main/v4/x/supply/types"
 	"github.com/gorilla/mux"
 	"github.com/grpc-ecosystem/grpc-gateway/runtime"
 	"github.com/spf13/cobra"
@@ -80,6 +80,7 @@ func (a AppModuleBasic) RegisterRESTRoutes(clientCtx client.Context, rtr *mux.Ro
 
 // RegisterGRPCGatewayRoutes registers the gRPC Gateway routes for the capability module.
 func (AppModuleBasic) RegisterGRPCGatewayRoutes(clientCtx client.Context, mux *runtime.ServeMux) {
+	// nolint: staticcheck
 	err := types.RegisterQueryHandlerClient(context.Background(), mux, types.NewQueryClient(clientCtx))
 
 	if err != nil {
@@ -134,6 +135,7 @@ func (am AppModule) LegacyQuerierHandler(legacyQuerierCdc *codec.LegacyAmino) sd
 
 // RegisterServices registers query server.
 func (am AppModule) RegisterServices(cfg module.Configurator) {
+	// nolint: staticcheck
 	types.RegisterQueryServer(cfg.QueryServer(), am.keeper)
 }
 
